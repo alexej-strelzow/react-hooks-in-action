@@ -8,11 +8,9 @@ import BookingDetails from "./BookingDetails";
 import weekReducer from "./weekReducer";
 
 export default function Bookings ({bookable}) {
-
   const [week, dispatch] = useReducer(
     weekReducer, new Date(), getWeek
   );
-
   const [booking, setBooking] = useState(null);
 
   return (

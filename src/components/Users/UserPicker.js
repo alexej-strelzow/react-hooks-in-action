@@ -1,12 +1,13 @@
 import React, {useContext, useEffect, useState} from "react";
 import {FaSpinner} from "react-icons/fa";
 
-import UserContext from "../../contexts/UserContext";
+// import separate contexts for user and setUser
+import UserContext, {UserSetContext} from "../../contexts/UserContext";
 
-export default function UserPicker(/* no props needed */) {
-
-  // destructure user and setUser from context value
-  const {user, setUser} = useContext(UserContext);
+export default function UserPicker() {
+  // get user and setUser from separate contexts
+  const user = useContext(UserContext);
+  const setUser = useContext(UserSetContext);
 
   const [users, setUsers] = useState(null);
 

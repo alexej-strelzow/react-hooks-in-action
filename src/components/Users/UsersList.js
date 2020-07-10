@@ -4,13 +4,12 @@ import getData from "../../utils/api";
 import UserContext from "../../contexts/UserContext";
 
 export default function UsersList () {
+  const loggedInUser = useContext(UserContext); // no need to destructure
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  // destructure user from context
-  const {user : loggedInUser} = useContext(UserContext);
   const user = selectedUser || loggedInUser;
 
   useEffect(() => {

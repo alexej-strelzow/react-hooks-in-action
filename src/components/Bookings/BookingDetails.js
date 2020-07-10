@@ -30,8 +30,7 @@ function Booking ({booking, bookable}) {
 }
 
 export default function BookingDetails ({booking, bookable}) {
-  // destructure user from context value
-  const {user} = useContext(UserContext);
+  const user = useContext(UserContext); // no need to destructure
   const isBooker = booking && user && (booking.bookerId === user.id);
 
   return (
