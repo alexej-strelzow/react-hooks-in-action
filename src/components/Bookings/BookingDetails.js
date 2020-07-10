@@ -1,4 +1,8 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useContext} from "react";
+
+import {FaEdit} from "react-icons/fa";
+
+import UserContext from "../../contexts/UserContext";
 
 function Booking ({booking, bookable}) {
   const {title, date, session, notes} = booking;
@@ -28,9 +32,25 @@ function Booking ({booking, bookable}) {
 }
 
 export default function BookingDetails ({booking, bookable}) {
+
+  const user = useContext(UserContext);
+
+  const isBooker = booking && user && (booking.bookerId === user.id);
+
   return (
     <div className="booking-details">
-      <h2>Booking Details</h2>
+      <h2>
+        Booking Details
+        {isBooker && (
+          <span className="controls">
+            <button
+              className="btn"
+            >
+              <FaEdit/>
+            </button>
+          </span>
+        )}
+      </h2>
 
       {booking ? (
         <Booking
