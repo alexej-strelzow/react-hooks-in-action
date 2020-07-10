@@ -1,46 +1,34 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, {useState, useEffect, Fragment, useContext} from 'react';
 import {FaSpinner} from "react-icons/fa";
 import getData from "../../utils/api";
+
+// import the user context
+import UserContext from "../../contexts/UserContext";
 
 export default function UsersList () {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState(null);
-  const [userIndex, setUserIndex] = useState(0);
-  const user = users?.[userIndex];
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  const [isPresenting, setIsPresenting] = useState(false);
+  // get the current user from context
+  const loggedInUser = useContext(UserContext);
+
+  // if no user is selected in the list,
+  // use the user from context
+  const user = selectedUser || loggedInUser;
 
   useEffect(() => {
     getData("http://localhost:3001/users")
       .then(data => {
         setUsers(data);
         setIsLoading(false);
-        setIsPresenting(true);
       })
       .catch(error => {
         setError(error);
         setIsLoading(false);
       });
   }, []);
-
-  // there's no need for a ref because
-  // every re-render requires a new timer
-  useEffect(() => {
-    if (isPresenting && !isLoading && !error) {
-      let timerId = setTimeout(nextUser, 3000);
-
-      // clear any existing timer when the component re-renders
-      return () => clearTimeout(timerId);
-    }
-  }); // no deps - run after every render
-
-  // cycle through the users in the list
-  function nextUser () {
-    if (users) {
-      setUserIndex(i => (i + 1) % users.length);
-    }
-  }
 
   if (error) {
     return <p>{error.message}</p>
@@ -56,16 +44,15 @@ export default function UsersList () {
   return (
     <Fragment>
       <ul className="users items-list-nav">
-        {users.map((u, i) => (
+        {users.map(u => (
           <li
             key={u.title}
-            className={i === userIndex ? "selected" : null}
+            className={u.id === user?.id ? "selected" : null}
           >
             <button
               className="btn"
               onClick={() => {
-                setIsPresenting(false);  // end Presentation Mode
-                setUserIndex(i);
+                setSelectedUser(u);
               }}
             >
               {u.name}
