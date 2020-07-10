@@ -1,7 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {FaSpinner} from "react-icons/fa";
 
-export default function UserPicker({user, setUser}) {
+import UserContext from "../../contexts/UserContext";
+
+export default function UserPicker(/* no props needed */) {
+
+  // destructure user and setUser from context value
+  const {user, setUser} = useContext(UserContext);
+
   const [users, setUsers] = useState(null);
 
   useEffect(() => {
@@ -16,7 +22,6 @@ export default function UserPicker({user, setUser}) {
   function handleSelect (e) {
     const selectedID = parseInt(e.target.value);
     const selectedUser = users.find(u => u.id === selectedID);
-
     setUser(selectedUser);
   }
 

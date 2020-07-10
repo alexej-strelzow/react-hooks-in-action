@@ -1,7 +1,5 @@
 import React, {Fragment, useContext} from "react";
-
 import {FaEdit} from "react-icons/fa";
-
 import UserContext from "../../contexts/UserContext";
 
 function Booking ({booking, bookable}) {
@@ -32,9 +30,8 @@ function Booking ({booking, bookable}) {
 }
 
 export default function BookingDetails ({booking, bookable}) {
-
-  const user = useContext(UserContext);
-
+  // destructure user from context value
+  const {user} = useContext(UserContext);
   const isBooker = booking && user && (booking.bookerId === user.id);
 
   return (

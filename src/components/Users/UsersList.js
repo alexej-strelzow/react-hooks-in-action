@@ -1,8 +1,6 @@
 import React, {useState, useEffect, Fragment, useContext} from 'react';
 import {FaSpinner} from "react-icons/fa";
 import getData from "../../utils/api";
-
-// import the user context
 import UserContext from "../../contexts/UserContext";
 
 export default function UsersList () {
@@ -11,11 +9,8 @@ export default function UsersList () {
   const [users, setUsers] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  // get the current user from context
-  const loggedInUser = useContext(UserContext);
-
-  // if no user is selected in the list,
-  // use the user from context
+  // destructure user from context
+  const {user : loggedInUser} = useContext(UserContext);
   const user = selectedUser || loggedInUser;
 
   useEffect(() => {
