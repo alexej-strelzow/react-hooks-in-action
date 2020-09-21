@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState, Fragment} from "react";
 import {getGrid, transformBookings} from "./grid-builder";
 import {getBookings} from "../../utils/api";
-import {FaSpinner} from "react-icons/fa";
+import Spinner from "../UI/Spinner";
 
 export default function BookingsGrid (
   {week, bookable, booking, setBooking}
@@ -10,9 +10,7 @@ export default function BookingsGrid (
   const [error, setError] = useState(false);
 
   const {grid, sessions, dates} = useMemo(
-
     () => bookable ? getGrid(bookable, week.start) : {},
-
     [bookable, week.start]
   );
 
@@ -72,7 +70,7 @@ export default function BookingsGrid (
         <tr>
           <th>
             <span className="status">
-              <FaSpinner className="icon-loading"/>
+              <Spinner/>
             </span>
           </th>
           {dates.map(d => (

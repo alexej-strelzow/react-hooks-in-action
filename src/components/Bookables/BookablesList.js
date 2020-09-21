@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {FaArrowRight, FaSpinner} from "react-icons/fa";
+import {FaArrowRight} from "react-icons/fa";
 import getData from "../../utils/api";
+import Spinner from "../UI/Spinner";
 
 export default function BookablesList ({bookable, setBookable}) {
   const [bookables, setBookables] = useState([]);
@@ -43,7 +44,7 @@ export default function BookablesList ({bookable, setBookable}) {
 
   if (isLoading) {
     return <p>
-      <FaSpinner className="icon-loading"/>{" "}
+      <Spinner/>{" "}
       Loading bookables...
     </p>
   }

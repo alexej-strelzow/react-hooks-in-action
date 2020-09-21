@@ -114,6 +114,35 @@
         5,
         6
       ]
+    },
+    {
+      "title": "Redux Juice",
+      "group": "Events",
+      "days": [
+        0,
+        1
+      ],
+      "sessions": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "id": 7,
+      "notes": "I love Redux Juice"
+    },
+    {
+      "title": "Yuzu Ice Cream",
+      "group": "Events",
+      "days": [
+        1,
+        2
+      ],
+      "sessions": [
+        3
+      ],
+      "id": 8
     }
   ],
   "users": [
@@ -149,7 +178,7 @@
   "bookings": [
     {
       "session": "Lunch",
-      "date": "2020-07-22",
+      "date": "2020-06-22",
       "bookableId": 1,
       "title": "Onboarding",
       "bookerId": 3,
@@ -157,7 +186,7 @@
     },
     {
       "session": "Lunch",
-      "date": "2020-07-23",
+      "date": "2020-06-23",
       "bookableId": 3,
       "title": "Football Challenge",
       "bookerId": 3,
@@ -165,7 +194,7 @@
     },
     {
       "session": "Morning",
-      "date": "2020-07-24",
+      "date": "2020-06-24",
       "bookableId": 1,
       "title": "Movie Pitch!",
       "bookerId": 2,
@@ -173,7 +202,7 @@
     },
     {
       "session": "Evening",
-      "date": "2020-07-25",
+      "date": "2020-06-25",
       "bookableId": 1,
       "title": "Meeting Room",
       "bookerId": 2,
@@ -181,7 +210,7 @@
     },
     {
       "session": "Breakfast",
-      "date": "2020-07-26",
+      "date": "2020-06-26",
       "bookableId": 3,
       "title": "Tiddlywinks",
       "bookerId": 2,
@@ -189,7 +218,7 @@
     },
     {
       "session": "Lunch",
-      "date": "2020-07-25",
+      "date": "2020-05-25",
       "bookableId": 7,
       "title": "Movie Pitch!",
       "bookerId": 1,
@@ -197,7 +226,7 @@
     },
     {
       "session": "Lunch",
-      "date": "2020-07-20",
+      "date": "2020-06-26",
       "bookableId": 1,
       "title": "New Employee Intro",
       "bookerId": 1,
@@ -205,7 +234,7 @@
     },
     {
       "session": "Afternoon",
-      "date": "2020-07-23",
+      "date": "2020-06-23",
       "bookableId": 1,
       "title": "Project Update",
       "bookerId": 1,
@@ -213,11 +242,19 @@
     },
     {
       "session": "Afternoon",
-      "date": "2020-07-22",
+      "date": "2020-06-22",
       "bookableId": 2,
       "title": "Quiz",
       "bookerId": 1,
       "id": 9
+    },
+    {
+      "session": "Afternoon",
+      "date": "2020-06-24",
+      "bookableId": 2,
+      "title": "Redux Juice",
+      "bookerId": 1,
+      "id": 10
     }
   ]
 }

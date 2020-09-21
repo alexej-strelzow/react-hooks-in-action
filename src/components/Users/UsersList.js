@@ -1,15 +1,16 @@
-import React, {useState, useEffect, Fragment, useContext} from 'react';
-import {FaSpinner} from "react-icons/fa";
+import React, {useState, useEffect, Fragment} from 'react';
 import getData from "../../utils/api";
-import UserContext from "../../contexts/UserContext";
+
+import {useUser} from "../../contexts/UserContext";
+import Spinner from "../UI/Spinner";
 
 export default function UsersList () {
-  const loggedInUser = useContext(UserContext); // no need to destructure
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
 
+  const [loggedInUser] = useUser();
   const user = selectedUser || loggedInUser;
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function UsersList () {
 
   if (isLoading) {
     return <p>
-      <FaSpinner className="icon-loading"/>{" "}
+      <Spinner/>{" "}
       Loading users...
     </p>
   }

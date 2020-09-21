@@ -1,6 +1,6 @@
-import React, {Fragment, useContext} from "react";
+import React, {Fragment} from "react";
 import {FaEdit} from "react-icons/fa";
-import UserContext from "../../contexts/UserContext";
+import {useUser} from "../../contexts/UserContext";
 
 function Booking ({booking, bookable}) {
   const {title, date, session, notes} = booking;
@@ -30,7 +30,7 @@ function Booking ({booking, bookable}) {
 }
 
 export default function BookingDetails ({booking, bookable}) {
-  const user = useContext(UserContext); // no need to destructure
+  const [user] = useUser();
   const isBooker = booking && user && (booking.bookerId === user.id);
 
   return (

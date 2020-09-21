@@ -41,6 +41,7 @@ export default function WeekPicker ({dispatch}) {
             ref={textboxRef}
             placeholder="e.g. 2020-09-02"
             id="wpDate"
+            defaultValue="2020-06-24"
           />
 
           <button onClick={goToDate} className="go btn">

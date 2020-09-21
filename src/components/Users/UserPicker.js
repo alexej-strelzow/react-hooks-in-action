@@ -1,14 +1,10 @@
-import React, {useContext, useEffect, useState} from "react";
-import {FaSpinner} from "react-icons/fa";
+import React, {useEffect, useState} from "react";
+import Spinner from "../UI/Spinner";
 
-// import separate contexts for user and setUser
-import UserContext, {UserSetContext} from "../../contexts/UserContext";
+import {useUser} from "../../contexts/UserContext";
 
 export default function UserPicker() {
-  // get user and setUser from separate contexts
-  const user = useContext(UserContext);
-  const setUser = useContext(UserSetContext);
-
+  const [user, setUser] = useUser();
   const [users, setUsers] = useState(null);
 
   useEffect(() => {
@@ -27,7 +23,7 @@ export default function UserPicker() {
   }
 
   if (users === null) {
-    return <FaSpinner className="icon-loading"/>
+    return <Spinner/>
   }
 
   return (

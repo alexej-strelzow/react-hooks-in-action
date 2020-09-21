@@ -233,6 +233,10 @@ main {
   }
 }
 
+.page-loading {
+  font-size: 300%;
+}
+
 .icon-loading {
   animation: spin 1.5s linear infinite;
 }
