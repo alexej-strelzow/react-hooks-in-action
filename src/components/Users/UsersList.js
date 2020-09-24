@@ -1,18 +1,22 @@
 import React, {useState, Fragment} from 'react';
-import Spinner from "../UI/Spinner";
-import {useUser} from "../../contexts/UserContext";
+import {useQuery} from "react-query"; // new import
 
-import useFetch from "../../utils/useFetch";
+import {useUser} from "../../contexts/UserContext";
+import getData from "../../utils/api";  // new import
+
+import Spinner from "../UI/Spinner";
 
 export default function UsersList () {
-  const [selectedUser, setSelectedUser] = useState(null);
-
   const [loggedInUser] = useUser();
-  const user = selectedUser || loggedInUser;
 
-  const {data : users = [], status, error} = useFetch(
-    "http://localhost:3001/users"
+  // switch to calling useQuery
+  const {data: users = [], status, error} = useQuery(
+    "users",
+    () => getData("http://localhost:3001/users")
   );
+
+  const [selectedUser, setSelectedUser] = useState(null);
+  const user = selectedUser || loggedInUser;
 
   if (status === "error") {
     return <p>{error.message}</p>
