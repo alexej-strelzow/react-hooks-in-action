@@ -143,6 +143,19 @@
         3
       ],
       "id": 8
+    },
+    {
+      "title": "Messages",
+      "group": "Events",
+      "notes": "Hello",
+      "days": [
+        1,
+        2
+      ],
+      "sessions": [
+        2
+      ],
+      "id": 9
     }
   ],
   "users": [
