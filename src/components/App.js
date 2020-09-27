@@ -1,4 +1,4 @@
-import React, {lazy, Suspense} from "react";
+import React, {lazy, Suspense, Fragment} from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,6 +13,7 @@ import UserPicker from "./Users/UserPicker.js";
 import PageSpinner from "./UI/PageSpinner";
 
 import {UserProvider} from "../contexts/UserContext";
+import ErrorBoundary from "./UI/ErrorBoundary";
 
 const BookablesPage = lazy(() => import("./Bookables/BookablesPage"));
 const BookingsPage = lazy(() => import("./Bookings/BookingsPage"));
@@ -50,13 +51,23 @@ export default function App () {
             <UserPicker/>
           </header>
 
-          <Suspense fallback={<PageSpinner/>}>
-            <Routes>
-              <Route path="/bookings" element={<BookingsPage/>}/>
-              <Route path="/bookables/*" element={<BookablesPage/>}/>
-              <Route path="/users" element={<UsersPage/>}/>
-            </Routes>
-          </Suspense>
+          <ErrorBoundary
+            fallback={
+              <Fragment>
+                <h1>Something went wrong!</h1>
+                <p>Try reloading the page.</p>
+              </Fragment>
+            }
+          >
+            <Suspense fallback={<PageSpinner/>}>
+              <Routes>
+                <Route path="/bookings" element={<BookingsPage/>}/>
+                <Route path="/bookables/*" element={<BookablesPage/>}/>
+                <Route path="/users" element={<UsersPage/>}/>
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
+
         </div>
       </Router>
     </UserProvider>
