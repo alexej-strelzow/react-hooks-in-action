@@ -1,33 +1,22 @@
 import React, {useState, Fragment} from 'react';
-import {useQuery} from "react-query"; // new import
+import {useQuery} from "react-query";
 
 import {useUser} from "../../contexts/UserContext";
-import getData from "../../utils/api";  // new import
-
-import Spinner from "../UI/Spinner";
+import getData from "../../utils/api";
 
 export default function UsersList () {
   const [loggedInUser] = useUser();
 
-  // switch to calling useQuery
-  const {data: users = [], status, error} = useQuery(
+  const {data: users = []} = useQuery(
     "users",
-    () => getData("http://localhost:3001/users")
+    () => getData("http://localhost:3001/users"),
+    {
+      suspense: true
+    }
   );
 
   const [selectedUser, setSelectedUser] = useState(null);
   const user = selectedUser || loggedInUser;
-
-  if (status === "error") {
-    return <p>{error.message}</p>
-  }
-
-  if (status === "loading") {
-    return <p>
-      <Spinner/>{" "}
-      Loading users...
-    </p>
-  }
 
   return (
     <Fragment>

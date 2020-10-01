@@ -9,8 +9,6 @@ export default function BookableForm({formState = {}, handleSubmit, handleDelete
   const {title = "", group = "", notes = ""} = state;
   const {days = [], sessions = []} = state;
 
-  throw new Error("Noooo!");
-
   return (
     <main className="bookables-form">
       <div className="item item-form">

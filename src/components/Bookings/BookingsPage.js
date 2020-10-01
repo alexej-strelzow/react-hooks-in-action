@@ -8,12 +8,14 @@ import getData from "../../utils/api";
 
 import BookablesList from "../Bookables/BookablesList";
 import Bookings from "./Bookings";
-import PageSpinner from "../UI/PageSpinner";
 
 export default function BookingsPage() {
-  const {data: bookables = [], status, error} = useQuery(
+  const {data: bookables = []} = useQuery(
     "bookables",
-    () => getData("http://localhost:3001/bookables")
+    () => getData("http://localhost:3001/bookables"),
+    {
+      suspense: true
+    }
   );
 
   const {date, bookableId} = useBookingsParams();
@@ -25,14 +27,6 @@ export default function BookingsPage() {
   function getUrl (id) {
     const root = `/bookings?bookableId=${id}`;
     return date ? `${root}&date=${shortISO(date)}` : root;
-  }
-
-  if (status === "error") {
-    return <p>{error.message}</p>
-  }
-
-  if (status === "loading") {
-    return <PageSpinner/>
   }
 
   return (

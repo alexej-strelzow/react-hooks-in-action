@@ -13,16 +13,13 @@ export default function BookableNew() {
   const formState = useFormState();
 
   const [createBookable, {status, error}] = useMutation(
-
     item => createItem("http://localhost:3001/bookables", item),
-
     {
       onSuccess: bookable => {
         queryCache.setQueryData(
           "bookables",
           old => [...(old || []), bookable]
         );
-
         navigate(`/bookables/${bookable.id}`);
       }
     }

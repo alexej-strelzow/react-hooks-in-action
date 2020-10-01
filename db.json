@@ -120,7 +120,10 @@
       "group": "Events",
       "days": [
         0,
-        1
+        1,
+        6,
+        5,
+        4
       ],
       "sessions": [
         0,
