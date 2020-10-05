@@ -11,8 +11,8 @@ export default function UsersPage() {
   const [selectedUser, setSelectedUser] = useState(null);
   const user = selectedUser || loggedInUser;
 
-  const [startTransition] = unstable_useTransition({
-    timeoutMs: 3000
+  const [startTransition, isPending] = unstable_useTransition({
+    timeoutMs: 30000
   });
 
   function switchUser(nextUser) {
@@ -38,7 +38,7 @@ export default function UsersPage() {
       <UsersList user={user} setUser={switchUser}/>
 
       <Suspense fallback={<PageSpinner/>}>
-        <UserDetails userID={user.id}/>
+        <UserDetails userID={user.id} isPending={isPending}/>
       </Suspense>
     </main>
   ) : <PageSpinner/>;

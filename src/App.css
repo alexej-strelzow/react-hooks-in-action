@@ -432,6 +432,7 @@ header .icon-loading {
 .user {
   position: relative;
   padding-left: 170px;
+  transition: opacity 300ms ease-in;
 }
 .user .item-header {
   padding-left: 170px;
@@ -446,4 +447,8 @@ header .icon-loading {
   background: white;
   width:120px;
   height:120px;
+}
+
+.user-pending {
+  opacity: 0.6;
 }
