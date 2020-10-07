@@ -432,7 +432,7 @@ header .icon-loading {
 .user {
   position: relative;
   padding-left: 170px;
-  transition: opacity 300ms ease-in;
+  transition: opacity 400ms ease-in-out 800ms;
 }
 .user .item-header {
   padding-left: 170px;
@@ -451,4 +451,14 @@ header .icon-loading {
 
 .user-pending {
   opacity: 0.6;
+}
+
+.users .icon-loading {
+  opacity: 0;
+  font-size: 80%;
+  margin: 0 1em;
+}
+
+.users .selected .icon-loading {
+  opacity: 1;
 }

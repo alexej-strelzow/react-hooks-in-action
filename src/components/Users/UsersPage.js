@@ -1,4 +1,4 @@
-import React, {useState, unstable_useTransition, Suspense} from "react";
+import React, {useState, unstable_useDeferredValue, Suspense} from "react";
 import UsersList from "./UsersList";
 import {useUser} from "../../contexts/UserContext";
 import PageSpinner from "../UI/PageSpinner";
@@ -11,12 +11,12 @@ export default function UsersPage() {
   const [selectedUser, setSelectedUser] = useState(null);
   const user = selectedUser || loggedInUser;
 
-  const [startTransition, isPending] = unstable_useTransition({
-    timeoutMs: 30000
-  });
+  const deferredUser = unstable_useDeferredValue(user, {
+    timeoutMs: 3000
+  })
 
   function switchUser(nextUser) {
-    startTransition(() => setSelectedUser(nextUser));
+    setSelectedUser(nextUser);
 
     queryCache.prefetchQuery(
       ["user", nextUser.id],
@@ -35,10 +35,17 @@ export default function UsersPage() {
 
   return user ? (
     <main className="users-page">
-      <UsersList user={user} setUser={switchUser}/>
+      <UsersList
+        user={user}
+        setUser={switchUser}
+        isPending={deferredUser !== user}
+      />
 
       <Suspense fallback={<PageSpinner/>}>
-        <UserDetails userID={user.id} isPending={isPending}/>
+        <UserDetails
+          userID={(deferredUser || user).id}
+          isPending={deferredUser !== user}
+        />
       </Suspense>
     </main>
   ) : <PageSpinner/>;
