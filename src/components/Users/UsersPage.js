@@ -11,9 +11,12 @@ export default function UsersPage() {
   const [selectedUser, setSelectedUser] = useState(null);
   const user = selectedUser || loggedInUser;
 
-  const deferredUser = unstable_useDeferredValue(user, {
-    timeoutMs: 3000
-  })
+  const deferredUser = unstable_useDeferredValue(
+    user,
+    {timeoutMs: 3000}
+  ) || user;
+
+  const isPending = deferredUser !== user;
 
   function switchUser(nextUser) {
     setSelectedUser(nextUser);
@@ -38,13 +41,13 @@ export default function UsersPage() {
       <UsersList
         user={user}
         setUser={switchUser}
-        isPending={deferredUser !== user}
+        isPending={isPending}
       />
 
       <Suspense fallback={<PageSpinner/>}>
         <UserDetails
-          userID={(deferredUser || user).id}
-          isPending={deferredUser !== user}
+          userID={deferredUser.id}
+          isPending={isPending}
         />
       </Suspense>
     </main>
