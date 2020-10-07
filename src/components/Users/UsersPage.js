@@ -12,7 +12,7 @@ export default function UsersPage() {
   const user = selectedUser || loggedInUser;
 
   const [startTransition, isPending] = unstable_useTransition({
-    timeoutMs: 30000
+    timeoutMs: 3000
   });
 
   function switchUser(nextUser) {
