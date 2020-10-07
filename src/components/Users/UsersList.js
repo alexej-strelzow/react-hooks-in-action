@@ -1,7 +1,8 @@
-import React, {unstable_useTransition} from 'react';
+import React from 'react';
 import {useQuery} from "react-query";
 import getData from "../../utils/api";
-import Spinner from "../UI/Spinner";
+
+import ButtonPending from "../UI/ButtonPending";
 
 export default function UsersList ({user, setUser}) {
   const {data: users} = useQuery(
@@ -26,24 +27,5 @@ export default function UsersList ({user, setUser}) {
         </li>
       ))}
     </ul>
-  );
-}
-
-function ButtonPending ({children, onClick, ...props}) {
-  const [startTransition, isPending] = unstable_useTransition({timeoutMs: 3000});
-
-  function handleClick () {
-    startTransition(onClick);
-  }
-
-  return (
-    <button
-      onClick={handleClick}
-      {...props}
-    >
-      {isPending && <Spinner/>}
-      {children}
-      {isPending && <Spinner/>}
-    </button>
   );
 }
