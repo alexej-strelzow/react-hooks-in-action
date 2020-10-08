@@ -1,7 +1,9 @@
-import React from "react";
+import React, {Suspense, unstable_SuspenseList as SuspenseList} from "react";
 import {useQuery} from "react-query";
 import getData from '../../utils/api';
 import Avatar from "./Avatar";
+import UserBookings from "./UserBookings";
+import UserTodos from "./UserTodos";
 
 export default function UserDetails ({userID, isPending}) {
   const {data: user} = useQuery(
@@ -26,6 +28,16 @@ export default function UserDetails ({userID, isPending}) {
         <h3>{user.title}</h3>
         <p>{user.notes}</p>
       </div>
+
+      <SuspenseList revealOrder="forwards">
+        <Suspense fallback={<p>Loading user bookings...</p>}>
+          <UserBookings id={userID}/>
+        </Suspense>
+
+        <Suspense fallback={<p>Loading user todos...</p>}>
+          <UserTodos id={userID}/>
+        </Suspense>
+      </SuspenseList>
     </div>
   )
 }

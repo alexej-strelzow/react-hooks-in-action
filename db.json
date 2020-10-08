@@ -114,38 +114,6 @@
         5,
         6
       ]
-    },
-    {
-      "title": "Redux Juice",
-      "group": "Events",
-      "days": [
-        0,
-        1,
-        6,
-        5,
-        4
-      ],
-      "sessions": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ],
-      "id": 7,
-      "notes": "I love Redux Juice"
-    },
-    {
-      "title": "Yuzu Ice Cream",
-      "group": "Events",
-      "days": [
-        1,
-        2
-      ],
-      "sessions": [
-        3
-      ],
-      "id": 8
     }
   ],
   "users": [
@@ -221,14 +189,6 @@
     },
     {
       "session": "Lunch",
-      "date": "2020-05-25",
-      "bookableId": 7,
-      "title": "Movie Pitch!",
-      "bookerId": 1,
-      "id": 6
-    },
-    {
-      "session": "Lunch",
       "date": "2020-06-26",
       "bookableId": 1,
       "title": "New Employee Intro",
@@ -250,14 +210,28 @@
       "title": "Quiz",
       "bookerId": 1,
       "id": 9
+    }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "userId": 1,
+      "todo": "Write handbook"
     },
     {
-      "session": "Afternoon",
-      "date": "2020-06-24",
-      "bookableId": 2,
-      "title": "Redux Juice",
-      "bookerId": 1,
-      "id": 10
+      "id": 2,
+      "userId": 1,
+      "todo": "Plan party"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "todo": "Install new system"
+    },
+    {
+      "id": 4,
+      "userId": 4,
+      "todo": "Order coffee"
     }
   ]
 }
