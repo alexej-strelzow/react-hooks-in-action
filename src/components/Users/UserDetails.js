@@ -1,4 +1,4 @@
-import React, {Suspense, unstable_SuspenseList as SuspenseList} from "react";
+import React, {Suspense} from "react";
 import {useQuery} from "react-query";
 import getData from '../../utils/api';
 import Avatar from "./Avatar";
@@ -29,15 +29,13 @@ export default function UserDetails ({userID, isPending}) {
         <p>{user.notes}</p>
       </div>
 
-      <SuspenseList revealOrder="forwards">
-        <Suspense fallback={<p>Loading user bookings...</p>}>
-          <UserBookings id={userID}/>
-        </Suspense>
+      <Suspense fallback={<p>Loading user bookings...</p>}>
+        <UserBookings id={userID}/>
+      </Suspense>
 
-        <Suspense fallback={<p>Loading user todos...</p>}>
-          <UserTodos id={userID}/>
-        </Suspense>
-      </SuspenseList>
+      <Suspense fallback={<p>Loading user todos...</p>}>
+        <UserTodos id={userID}/>
+      </Suspense>
     </div>
   )
 }
