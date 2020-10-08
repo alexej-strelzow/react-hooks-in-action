@@ -15,9 +15,13 @@ export default function UserTodos({id}) {
   return (
     <div className="user-todos">
       <h3>User Todos</h3>
-      <ul>
-        {todos.map(todo => <li key={todo.id}>{todo.todo}</li>)}
-      </ul>
+      {todos.length > 0 ? (
+        <ul>
+          {todos.map(todo => <li key={todo.id}>{todo.todo}</li>)}
+        </ul>
+      ) : (
+        <p>Nothing to do!</p>
+      )}
     </div>
   )
 }
